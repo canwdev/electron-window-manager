@@ -1,0 +1,13 @@
+module.exports = {
+  SEND_MESSAGE: 'SEND_MESSAGE', // 发送消息
+  SEND_BROADCAST_MESSAGE: 'SEND_BROADCAST_MESSAGE', // 发送广播消息
+  CREATE_WINDOW: 'CREATE_WINDOW', // 创建窗口
+  GET_WINDOW_IDS: 'GET_WINDOW_IDS', // 获取窗口id
+  UPDATE_MESSAGE: 'UPDATE_MESSAGE', // 更新消息(channel)
+  UPDATE_WINDOW_IDS: 'UPDATE_WINDOW_IDS', // 更新窗口ids
+  WINDOW_ACTION: 'WINDOW_ACTION', // 执行窗口动作
+  GET_STATE: 'GET_STATE', // 获取共享状态
+  SET_STATE: 'SET_STATE', // 设置共享状态
+  UPDATE_STATE: 'UPDATE_STATE', // 更新共享状态
+  STATE_UPDATED: 'STATE_UPDATED' // 共享状态已更新
+}

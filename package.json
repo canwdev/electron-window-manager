@@ -1,0 +1,13 @@
+{
+  "name": "electron-window-manager",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/canwdev/electron-window-manager.git",
+  "author": "canwdev <c2097@live.com>",
+  "license": "MIT",
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "electron-window-state-manager": "^0.3.2",
+    "on-change": "^2.2.3"
+  }
+}
