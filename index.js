@@ -17,7 +17,12 @@ const {MessageItem} = require('./enum')
  * - 共享状态
  */
 class WindowManager {
-  constructor() {
+  constructor(config = {}) {
+    this.preloadDir = config.preloadDir || __dirname
+    this.iconPath = config.iconPath || path.join(this.preloadDir, '../build/256x256.png')
+
+    console.log(this.iconPath)
+
     // 当前窗口列表
     this.windows = new Map()
     // 用来判断 IPC 事件是否初始化的值
@@ -160,7 +165,7 @@ class WindowManager {
       frame: false,
       transparent: false,
       resizable: true,
-      icon: path.join(__dirname, '../../../build/256x256.png'),
+      icon: this.iconPath,
       webPreferences: {
         spellcheck: false,
         devTools: true,
@@ -187,8 +192,9 @@ class WindowManager {
     // 指定 preload 文件
     if (!webPreferences.preload) {
       const {nodeIntegration, contextIsolation} = webPreferences
+      // 自动判断 preload 类型
       const preloadName = (!nodeIntegration && contextIsolation) ? 'preload.js' : 'preload-node.js'
-      webPreferences.preload = path.join(__dirname, `../../${preloadName}`)
+      webPreferences.preload = path.join(this.preloadDir, preloadName)
     }
 
     let windowPos
