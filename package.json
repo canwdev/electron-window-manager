@@ -1,5 +1,5 @@
 {
-  "name": "electron-window-manager",
+  "name": "@canwdev/electron-window-manager",
   "version": "0.1.0",
   "main": "index.js",
   "repository": "https://github.com/canwdev/electron-window-manager.git",
