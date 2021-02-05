@@ -1,8 +1,13 @@
 # Electron Window Manager
 
+Manage multiple electron windows, message transfer and sync state.
+
 ## Features
 
-TODO: Docs
+- Create customized windows
+- Use `preload.js`, you can maximize, minimize, switch, or call any window methods in render process with `nodeIntegration: false`
+- Message transfer between windows
+- State sync between windows
 
 ## Usage
 
