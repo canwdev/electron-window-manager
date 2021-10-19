@@ -43,9 +43,7 @@ class WindowManager {
     }
 
     // 窗口间共享数据
-    this.state = onChange({
-      a: 1
-    }, this.handleStateChange)
+    this.state = onChange({}, this.handleStateChange)
 
     this.handleGetState = () => {
       const obj = onChange.target(this.state)

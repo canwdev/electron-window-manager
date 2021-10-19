@@ -7,13 +7,15 @@ Tested in `"electron": "^10.3.0"`
 ## Features
 
 - Create customized windows
-- Use `preload.js`, you can maximize, minimize, switch, or call any window methods in render process with `nodeIntegration: false`
+- Use `preload.js`, you can maximize, minimize, switch, or call any window methods in render process
+  with `nodeIntegration: false`
 - Message transfer between windows
 - State sync between windows
 
 ## Usage
 
-Demos and examples are in this project: [electron-multiple-window-demo](https://github.com/canwdev/electron-multiple-window-demo)
+Demos and examples are in this
+project: [electron-multiple-window-demo](https://github.com/canwdev/electron-multiple-window-demo)
 
 ![screenshot](https://github.com/canwdev/electron-multiple-window-demo/raw/master/screenshot.png)
 
@@ -38,7 +40,7 @@ module.exports = {
 }
 ```
 
-Create your preload files and import `electron-api.js`: 
+Create your preload files and import `electron-api.js`:
 
 - `preload.js`: for `nodeIntegration: false` and `contextIsolation: true`
 - `preload-node.js`: for `nodeIntegration: true`
@@ -84,20 +86,20 @@ const wm = require('./utils/wm')
 
 // Create a window
 wm.createWindow({
-      width: 800,
-      height: 600,
-      minWidth: 800,
-      minHeight: 600,
-      frame: false,
-      webPreferences: {
-        nodeIntegration: false,
-        contextIsolation: true,
-      },
-      customConfig: {
-        isOpenDevTools: isDev,
-        saveWindowStateName: 'mainWindow',
-      }
+    width: 800,
+    height: 600,
+    minWidth: 800,
+    minHeight: 600,
+    frame: false,
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
     },
-    `http://localhost:3000`
-  )
+    customConfig: {
+      isOpenDevTools: isDev,
+      saveWindowStateName: 'mainWindow',
+    }
+  },
+  `http://localhost:3000`
+)
 ```

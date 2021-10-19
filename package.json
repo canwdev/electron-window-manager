@@ -1,14 +1,14 @@
 {
-  "name": "@canwdev/electron-window-manager",
-  "version": "0.1.2",
-  "main": "index.js",
-  "repository": "https://github.com/canwdev/electron-window-manager.git",
-  "author": "canwdev <c2097@live.com>",
-  "license": "MIT",
-  "private": false,
-  "dependencies": {
-    "deepmerge": "^4.2.2",
-    "electron-window-state-manager": "^0.3.2",
-    "on-change": "^2.2.3"
-  }
+ "name": "@canwdev/electron-window-manager",
+ "version": "0.1.3",
+ "main": "index.js",
+ "repository": "https://github.com/canwdev/electron-window-manager.git",
+ "author": "canwdev <c2097@live.com>",
+ "license": "MIT",
+ "private": false,
+ "dependencies": {
+  "deepmerge": "^4.2.2",
+  "electron-window-state-manager": "^0.3.2",
+  "on-change": "^2.2.3"
+ }
 }
