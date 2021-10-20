@@ -20,8 +20,7 @@ class WindowManager {
   constructor(config = {}) {
     this.preloadDir = config.preloadDir || __dirname
     this.iconPath = config.iconPath || path.join(this.preloadDir, '../build/256x256.png')
-
-    console.log(this.iconPath)
+    this.isDebug = config.isDebug || false
 
     // 当前窗口列表
     this.windows = new Map()
@@ -35,7 +34,7 @@ class WindowManager {
         previousValue,
         name,
       }
-      console.log('state changed', data)
+      this.debugLog('[wm] state changed', data)
       this.sendBroadcastMassage(new MessageItem({
         channel: Channels.STATE_UPDATED,
         data
@@ -47,17 +46,17 @@ class WindowManager {
 
     this.handleGetState = () => {
       const obj = onChange.target(this.state)
-      console.log('handleGetState', obj)
+      this.debugLog('[wm] handleGetState', obj)
       return obj
     }
     this.handleSetState = (ev, state) => {
-      console.log('handleSetState', state)
+      this.debugLog('[wm] handleSetState', state)
       onChange.unsubscribe(this.state)
       this.state = onChange(state, this.handleStateChange)
       this.handleStateChange()
     }
     this.handleUpdateState = (ev, path, value) => {
-      console.log('handleUpdateState', path, value)
+      this.debugLog('[wm] handleUpdateState', path, value)
       this.state[path] = value
     }
 
@@ -113,6 +112,12 @@ class WindowManager {
     }
 
     this.initializeIpcEvents()
+  }
+
+  debugLog(...params) {
+    if (this.isDebug) {
+      console.log(...params)
+    }
   }
 
   // 初始化 IPC 事件
@@ -212,7 +217,7 @@ class WindowManager {
       }
     }
 
-    // console.log('[wm] mainWindowState', mainWindowState)
+    // this.debugLog('[wm] mainWindowState', mainWindowState)
     const window = new BrowserWindow(deepmerge(config, {
       width: windowPos.width,
       height: windowPos.height,
@@ -222,10 +227,10 @@ class WindowManager {
     window.loadURL(url)
 
     const windowId = window.id
-    console.log(`[wm] window id=${windowId} create`)
+    this.debugLog(`[wm] window id=${windowId} create`)
 
     window.on('close', (event) => {
-      console.log(`[wm] window id=${windowId} on close`)
+      this.debugLog(`[wm] window id=${windowId} on close`)
       if (customConfig.saveWindowStateName) {
         windowPos.saveState(window)
       }
@@ -234,12 +239,12 @@ class WindowManager {
         window.hide()
         window.setSkipTaskbar(true)
         event.preventDefault()
-        console.log(`[wm] window id=${windowId} hide`)
+        this.debugLog(`[wm] window id=${windowId} hide`)
       }
     })
 
     window.on('closed', (event) => {
-      console.log(`[wm] window id=${windowId} was closed`)
+      this.debugLog(`[wm] window id=${windowId} was closed`)
 
       this.windows.delete(windowId)
       this.notifyUpdateWindowIDs(windowId)
@@ -295,9 +300,9 @@ class WindowManager {
    * @returns {boolean} 是否发送成功
    */
   sendMessage(windowId, message) {
-    // console.log('sendMessage', windowId, message)
+    // this.debugLog('sendMessage', windowId, message)
     const window = this.getWindowById(windowId)
-    // console.log('window', this.windows, window)
+    // this.debugLog('window', this.windows, window)
     if (window) {
       this.send(window, message)
       return true
