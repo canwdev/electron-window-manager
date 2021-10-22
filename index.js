@@ -19,7 +19,7 @@ const {MessageItem} = require('./enum')
 class WindowManager {
   constructor(config = {}) {
     this.preloadDir = config.preloadDir || __dirname
-    this.iconPath = config.iconPath || path.join(this.preloadDir, '../build/256x256.png')
+    this.iconPath = config.iconPath || path.join(this.preloadDir, '../../../build/256x256.png')
     this.isDebug = config.isDebug || false
 
     // 当前窗口列表
@@ -229,13 +229,15 @@ class WindowManager {
     const windowId = window.id
     this.debugLog(`[wm] window id=${windowId} create`)
 
+    // 监听 window.close() 事件
     window.on('close', (event) => {
       this.debugLog(`[wm] window id=${windowId} on close`)
       if (customConfig.saveWindowStateName) {
         windowPos.saveState(window)
       }
 
-      if (customConfig.isCloseHide) {
+      // 如果开启了 isCloseHide，在退出前加上 window._forceClose = true 可关闭窗口
+      if (customConfig.isCloseHide && !window._forceClose) {
         window.hide()
         window.setSkipTaskbar(true)
         event.preventDefault()

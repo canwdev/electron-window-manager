@@ -1,4 +1,4 @@
-// electronAPI.wmSendMessage 传输数据规范
+// electronAPI.wmSendMessage 传输数据类
 class MessageItem {
   constructor(config = {}) {
     const {channel, data} = config
