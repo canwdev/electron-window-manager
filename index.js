@@ -164,10 +164,10 @@ class WindowManager {
     const config = deepmerge({
       width: 800,
       height: 600,
-      show: true,
-      frame: false,
-      transparent: false,
-      resizable: true,
+      // show: true,
+      // frame: false,
+      // transparent: false,
+      // resizable: true,
       icon: this.iconPath,
       webPreferences: {
         spellcheck: false,

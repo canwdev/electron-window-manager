@@ -82,7 +82,6 @@ module.exports = {
   },
   // 窗口关闭
   closeWindow() {
-    remote.getCurrentWindow().hide() // 防止卡顿，先隐藏窗口
     remote.getCurrentWindow().close()
   },
   // 窗口隐藏
